@@ -6,9 +6,7 @@ import torchvision.models as models
 class EncoderCNN(nn.Module):
     def __init__(self, embed_size):
         super(EncoderCNN, self).__init__()
-        resnet = models.resnet50(pretrained=False)
-        pre=torch.load(r'pth/resnet50-19c8e357.pth')
-        resnet.load_state_dict(pre)
+        resnet = models.resnet50(pretrained=True)
         for param in resnet.parameters():
             param.requires_grad_(False)
         
@@ -25,10 +23,7 @@ class EncoderCNN(nn.Module):
 class EncoderCNN_VGG(nn.Module):
     def __init__(self, embed_size):
         super(EncoderCNN_VGG, self).__init__()
-        vgg16 = models.vgg16_bn(pretrained=False)
-        pre=torch.load(r'pth/vgg16_bn-6c64b313.pth')
-        vgg16.load_state_dict(pre)
-
+        vgg16 = models.vgg16_bn(pretrained=True)
         for param in vgg16.parameters():
             param.requires_grad_(False)
         
